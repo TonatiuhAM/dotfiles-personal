@@ -21,6 +21,9 @@ return {
     config = function(_, opts)
       -- Primero, aplicamos la configuración normal de catppuccin
       require("catppuccin").setup(opts)
+      
+      -- Establecer el colorscheme
+      vim.cmd.colorscheme("catppuccin")
 
       -- Luego, forzamos la transparencia en los grupos de resaltado más importantes
       vim.cmd.hi("Normal guibg=NONE ctermbg=NONE")

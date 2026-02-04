@@ -90,29 +90,25 @@ zinit light zsh-users/zsh-autosuggestions      # Sugerencias automáticas
 # Propósito: Integración con Superfile para cambio de directorio automático
 # Uso: spf [argumentos_de_superfile]
 spf() {
-    # Detecta el sistema operativo para usar la ruta correcta
     os=$(uname -s)
 
-    # Configuración específica para macOS
-    if [[ "$os" == "Darwin" ]]; then
-        export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir"
-    fi
-
-    # Configuración para Linux (no se ejecuta en macOS)
+    # Linux
     if [[ "$os" == "Linux" ]]; then
         export SPF_LAST_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/superfile/lastdir"
     fi
 
-    # Ejecuta superfile con los argumentos proporcionados
+    # macOS
+    if [[ "$os" == "Darwin" ]]; then
+        export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir"
+    fi
+
     command spf "$@"
 
-    # Cambia al último directorio visitado si existe el archivo de control
     [ ! -f "$SPF_LAST_DIR" ] || {
         . "$SPF_LAST_DIR"
         rm -f -- "$SPF_LAST_DIR" > /dev/null
     }
 }
-
 # Función: scpkindle
 # Propósito: Transferir archivos al Kindle vía SCP
 # Uso: scpkindle <archivo_local> <ruta_destino_en_kindle>
@@ -179,7 +175,6 @@ alias nv="nvim"
 
 # Sistema y terminal
 alias ff='fastfetch'
-alias cls='clear && printf "\e[3J"'
 alias zshs='source ~/.zshrc'  # Recargar configuración de zsh
 alias ls='lsd -lA'
 
