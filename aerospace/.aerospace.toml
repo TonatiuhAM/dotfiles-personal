@@ -155,6 +155,25 @@ run = "move-node-to-workspace 2"
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
     alt-space = 'layout floating tiling' # Toggle tiling on/off
+    
+    # Toggle orientation (friendly for Spanish keyboard)
+    alt-r = 'layout tiles horizontal vertical' # Toggle horizontal/vertical orientation (R = rotate)
+    
+    # Create master-stack layout (like in your image)
+    # Step 1: Put windows side by side, then join right windows together
+    alt-m = 'flatten-workspace-tree' # Reset layout, then manually arrange using join-with
+    
+    # Quick layout cycling
+    alt-shift-r = 'layout h_tiles v_tiles h_accordion v_accordion' # Cycle through all layouts
+    
+    # Join commands for creating master-stack manually
+    ctrl-j = 'join-with down'  # Join with window below (create vertical stack)
+    ctrl-l = 'join-with right' # Join with window to the right (move to right group)
+    
+    # Flatten/separate commands
+    ctrl-f = 'flatten-workspace-tree' # Reset/flatten all window groupings
+    ctrl-shift-j = 'join-with up'     # Join with window above (opposite of ctrl-j)
+    ctrl-shift-l = 'join-with left'   # Join with window to the left (opposite of ctrl-l)
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     alt-h = 'focus left'
