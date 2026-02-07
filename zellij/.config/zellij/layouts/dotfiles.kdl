@@ -1,0 +1,39 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    
+    tab name="Files & Code" {
+        pane split_direction="vertical" {
+            pane {
+                cwd "$HOME/.config"
+            }
+            pane command="opencode" {
+                cwd "$HOME/.config"
+            }
+        }
+    }
+    
+    tab name="Git" {
+        pane command="lazygit" {
+            cwd "$HOME/dotfiles"
+        }
+    }
+    
+    tab name="Terminal" {
+        pane split_direction="vertical" {
+            pane {
+                cwd "$HOME/.config"
+            }
+            pane {
+                cwd "$HOME/dotfiles"
+            }
+        }
+    }
+}

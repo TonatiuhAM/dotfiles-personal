@@ -49,6 +49,19 @@ automatically-unhide-macos-hidden-apps = false
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+# Assign workspaces to specific monitors
+# Monitor principal: workspaces 1-5, Monitor secundario: workspaces 6-9
+[workspace-to-monitor-force-assignment]
+1 = 'main'      # Workspaces 1-5 en monitor principal
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'secondary' # Workspaces 6-9 en monitor secundario
+7 = 'secondary'
+8 = 'secondary'
+9 = 'secondary'
+
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
@@ -168,7 +181,7 @@ run = "move-node-to-workspace 2"
     
     # Join commands for creating master-stack manually
     ctrl-j = 'join-with down'  # Join with window below (create vertical stack)
-    ctrl-l = 'join-with right' # Join with window to the right (move to right group)
+    ctrl-k = 'join-with right' # Join with window to the right (move to right group)
     
     # Flatten/separate commands
     ctrl-f = 'flatten-workspace-tree' # Reset/flatten all window groupings
@@ -225,6 +238,14 @@ run = "move-node-to-workspace 2"
     alt-tab = 'workspace-back-and-forth'
     # Move current window to other monitor
     alt-shift-tab = 'move-node-to-monitor --wrap-around next'
+    
+    # Multi-monitor navigation (Spanish keyboard friendly)
+    ctrl-alt-h = 'focus-monitor left'   # ◄ Focus left monitor  
+    ctrl-alt-l = 'focus-monitor right'  # ► Focus right monitor
+    
+    # Move workspace between monitors
+    ctrl-shift-alt-h = 'move-workspace-to-monitor left'  # ◄ Move workspace to left monitor
+    ctrl-shift-alt-l = 'move-workspace-to-monitor right' # ► Move workspace to right monitor
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     # alt-shift-semicolon = 'mode service'
