@@ -8,11 +8,16 @@
 # =============================================================================
 
 # =============================================================================
-# 1. CONFIGURACIÓN INICIAL Y VARIABLES DE ENTORNO
+# 1. DETECCIÓN Y CARGA DE HOMEBREW (macOS & Linux)
 # =============================================================================
-# Configuración de PATH
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    # Estamos en tu MacBook M2
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    # Estamos en tu servidor Ubuntu (Proxmox)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 
 # Editor y herramientas por defecto
 export EDITOR="nvim"
@@ -212,9 +217,6 @@ alias ta='tmux attach-session'
 # 10. INTEGRACIONES EXTERNAS Y HERRAMIENTAS
 # =============================================================================
 # Homebrew - gestor de paquetes para macOS
-
-# Ruby Version Manager con rbenv
-eval "$(rbenv init - zsh)"
 
 # Zoxide - navegación mejorada de directorios (sustituto de cd)
 eval "$(zoxide init zsh)"
