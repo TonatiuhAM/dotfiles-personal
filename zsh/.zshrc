@@ -178,6 +178,22 @@ alias ff='fastfetch'
 alias zshs='source ~/.zshrc'  # Recargar configuración de zsh
 alias ls='lsd -lA'
 
+# Zellij
+alias zhelp='zellij -h'
+alias zls='zellij list-sessions'
+
+zdelete() {
+  zellij delete-session "$1"
+}
+
+zattach() {
+  zellij attach "$1"
+}
+
+zrename() {
+  zellij action rename-session "$1"
+}
+
 # =============================================================================
 # 8. ALIASES - CONEXIONES SSH Y SERVIDORES
 # =============================================================================
