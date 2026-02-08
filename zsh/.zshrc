@@ -10,17 +10,13 @@
 # =============================================================================
 # 1. CONFIGURACIÓN INICIAL Y VARIABLES DE ENTORNO
 # =============================================================================
+# Configuración de PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 # Editor y herramientas por defecto
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-# Configuración de Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-
-# Configuración de PATH
-export PATH="$JAVA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-export PATH="/Users/tonatiuham/.local/bin:$PATH"
 
 # =============================================================================
 # 2. CONFIGURACIÓN DE ZSH Y HISTORIAL
@@ -216,7 +212,6 @@ alias ta='tmux attach-session'
 # 10. INTEGRACIONES EXTERNAS Y HERRAMIENTAS
 # =============================================================================
 # Homebrew - gestor de paquetes para macOS
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Ruby Version Manager con rbenv
 eval "$(rbenv init - zsh)"
@@ -233,8 +228,17 @@ eval "$(zoxide init zsh)"
 # Suprime el mensaje de bienvenida del sistema al abrir terminal
 touch ~/.hushlogin
 
-# =============================================================================
-# 12. FASTFETCH - INFORMACIÓN DEL SISTEMA
-# =============================================================================
-# Mostrar información del sistema al iniciar (colocado al final para mejor performance)
-fastfetch
+# opencode
+export PATH=/home/tona/.opencode/bin:$PATH
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
