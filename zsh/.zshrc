@@ -111,9 +111,9 @@ spf() {
 }
 # Función: scpkindle
 # Propósito: Transferir archivos al Kindle vía SCP
-# Uso: scpkindle <archivo_local> <ruta_destino_en_kindle>
+# Uso: scpkindle <archivo_local> <>
 scpkindle() {
-    scp -P 2222 -r "$1" root@192.168.100.28:"$2"
+    scp -P 2222 -r "$2" root@192.168.100."$1":"/mnt/us/libros/$3"
 }
 
 # Función: rc
@@ -157,6 +157,14 @@ rc() {
             return 1
             ;;
     esac
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
 }
 
 # =============================================================================
@@ -204,6 +212,10 @@ alias pve='ssh root@100.92.189.110'
 # Servicios a través de jump host (conexiones en cascada)
 alias jellyfin='ssh -J root@100.92.189.110 root@192.168.100.82'
 alias immich='ssh -J root@100.92.189.110 root@192.168.100.83'
+
+kindle() {
+  ssh root@192.168.100."$1" -p 2222
+}
 
 # =============================================================================
 # 9. ALIASES - TMUX Y SESIONES DE TRABAJO

@@ -85,7 +85,11 @@ if.app-id = 'com.raycast.macos'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.netcad.PacketTracer8.2.2'
+if.app-id = 'com.netacad.PacketTracer8.2.2'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Cisco Packet Tracer'
 run = 'layout floating'
 
 # Ghostty always opens in workspace 3
