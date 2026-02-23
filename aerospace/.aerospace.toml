@@ -223,7 +223,7 @@ run = "move-node-to-workspace 2"
     alt-f = 'exec-and-forget open -a Finder'
     alt-n = '''exec-and-forget osascript -e 'tell application "Obsidian" to activate' '''
     alt-w = '''exec-and-forget osascript -e 'tell application "WhatsApp" to activate' '''
-    alt-t = 'exec-and-forget open -a "Google Chrome"'
+    alt-t = 'exec-and-forget open -a "Helium"'
     # Window management
     alt-z = 'fullscreen'
 
