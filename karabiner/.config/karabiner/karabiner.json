@@ -4,25 +4,118 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Espacio: Espacio (toque) o Super Key (mantener 1s)",
-                        "enabled": false,
+                        "description": "(Hyper Layer) - HJKL como Flechas",
                         "manipulators": [
                             {
+                                "description": "Cambiar Caps Lock a variable hyper_mode",
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 1000,
-                                    "basic.to_if_held_down_threshold_milliseconds": 1000
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                        "set_variable": {
+                                            "name": "hyper_mode",
+                                            "value": 1
+                                        }
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_mode",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "(Hyper) Cambiar Caps Lock a Hyper Mode",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_mode",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_mode",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -73,6 +166,7 @@
                     },
                     {
                         "description": "Shift+Control+Option+Command + HJKL como Flechas",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -121,146 +215,7 @@
                         ]
                     },
                     {
-                        "description": "ASDF mod-tap (lazy, hold=100ms, tap=300ms)",
                         "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "a",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 300,
-                                    "basic.to_if_held_down_threshold_milliseconds": 100
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "to_if_alone": [{ "key_code": "a" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "lazy": true
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 300,
-                                    "basic.to_if_held_down_threshold_milliseconds": 100
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "to_if_alone": [{ "key_code": "s" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": true
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 300,
-                                    "basic.to_if_held_down_threshold_milliseconds": 100
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "to_if_alone": [{ "key_code": "d" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_option",
-                                        "lazy": true
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 300,
-                                    "basic.to_if_held_down_threshold_milliseconds": 100
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "to_if_alone": [{ "key_code": "f" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_command",
-                                        "lazy": true
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Flechas con left_shift + left_control y h/j/k/l",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_shift", "left_control"] }
-                                },
-                                "to": [{ "key_code": "left_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_shift", "left_control"] }
-                                },
-                                "to": [{ "key_code": "down_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_shift", "left_control"] }
-                                },
-                                "to": [{ "key_code": "up_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_shift", "left_control"] }
-                                },
-                                "to": [{ "key_code": "right_arrow" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Spacebar to Space when tapped, Hyper Key when held",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": ["left_shift", "left_option", "left_command"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "manipulators": [
                             {
                                 "description": "Change caps_lock to command+control+option+shift.",
@@ -308,6 +263,10 @@
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        },
+        {
+            "name": "Minecraft",
+            "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
         }
     ]
 }
