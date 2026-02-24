@@ -1,0 +1,44 @@
+{
+ :profiles {
+  :Mac2026 {:default true}
+ }
+
+ :main [
+  {
+   :des "Caps Lock como Activador de Hyper Mode"
+   :rules [
+    ;; Mantiene la variable hyper_mode en 1 mientras se presiona
+    [:caps_lock ["hyper_mode" 1] nil {:afterup ["hyper_mode" 0]}]
+   ]
+  }
+
+  {
+   :des "Modulo de Navegacion HJKL (Hyper Mode)"
+   :rules [
+    ;; Navegacion estilo Vim solo si hyper_mode es 1
+    [:h :left_arrow  :hyper_mode]
+    [:j :down_arrow  :hyper_mode]
+    [:k :up_arrow    :hyper_mode]
+    [:l :right_arrow :hyper_mode]
+   ]
+  }
+
+  {
+   :des "Recuperar teclas Mayor y Menor (Teclado MX)"
+   :rules [
+    ;; Hack de portapapeles para simbolos faltantes
+    [:grave_accent_and_tilde ["printf '<' | pbcopy" :v [:left_command]]]
+    [:!Sgrave_accent_and_tilde ["printf '>' | pbcopy" :v [:left_command]]]
+    [:!Rgrave_accent_and_tilde ["printf '>' | pbcopy" :v [:left_command]]]
+   ]
+  }
+
+  {
+   :des "Simple Modifications"
+   :rules [
+    ;; Mapeo de tecla fn a control izquierdo
+    [:fn :left_control]
+   ]
+  }
+ ]
+}
