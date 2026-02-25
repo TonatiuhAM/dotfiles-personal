@@ -1,44 +1,86 @@
 {
  :profiles {
   :Mac2026 {:default true}
+  :Minecraft {}
  }
 
  :main [
+  ;; === REGLAS GLOBALES (AMBOS PERFILES) ===
   {
-   :des "Caps Lock como Activador de Hyper Mode"
+   :des "Mac2026: Caps Lock como Activador de Hyper Mode"
    :rules [
-    ;; Mantiene la variable hyper_mode en 1 mientras se presiona
+    ;; Al presionar activa la variable, al soltar la apaga
     [:caps_lock ["hyper_mode" 1] nil {:afterup ["hyper_mode" 0]}]
    ]
+   :profiles [:Mac2026]
   }
 
   {
-   :des "Modulo de Navegacion HJKL (Hyper Mode)"
+   :des "Minecraft: Caps Lock como Activador de Hyper Mode"
    :rules [
-    ;; Navegacion estilo Vim solo si hyper_mode es 1
+    ;; Al presionar activa la variable, al soltar la apaga
+    [:caps_lock ["hyper_mode" 1] nil {:afterup ["hyper_mode" 0]}]
+   ]
+   :profiles [:Minecraft]
+  }
+
+  {
+   :des "Mac2026: Simple Modifications"
+   :rules [
+    ;; Tecla fn de MacBook a Control
+    [:fn :left_control]
+   ]
+   :profiles [:Mac2026]
+  }
+
+  {
+   :des "Minecraft: Simple Modifications"
+   :rules [
+    ;; Tecla fn de MacBook a Control
+    [:fn :left_control]
+   ]
+   :profiles [:Minecraft]
+  }
+
+  ;; === PERFIL MAC2026: CONFIGURACIÓN COMPLETA ===
+  {
+   :des "Mac2026: Navegación HJKL (Hyper Mode)"
+   :rules [
     [:h :left_arrow  :hyper_mode]
     [:j :down_arrow  :hyper_mode]
     [:k :up_arrow    :hyper_mode]
     [:l :right_arrow :hyper_mode]
    ]
+   :profiles [:Mac2026]
   }
 
   {
-   :des "Recuperar teclas Mayor y Menor (Teclado MX)"
+   :des "Mac2026: Cambiar a Minecraft (Hyper + 2)"
    :rules [
-    ;; Hack de portapapeles para simbolos faltantes
-    [:grave_accent_and_tilde ["printf '<' | pbcopy" :v [:left_command]]]
-    [:!Sgrave_accent_and_tilde ["printf '>' | pbcopy" :v [:left_command]]]
-    [:!Rgrave_accent_and_tilde ["printf '>' | pbcopy" :v [:left_command]]]
+    [:2 "'/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'Minecraft'" :hyper_mode]
    ]
+   :profiles [:Mac2026]
   }
 
   {
-   :des "Simple Modifications"
+   :des "Mac2026: Teclas Mayor y Menor (Teclado MX)"
    :rules [
-    ;; Mapeo de tecla fn a control izquierdo
-    [:fn :left_control]
+    ;; Estructura: [<from> <to> <conditions> <other_options>]
+    ;; El pegado (!Cv = Cmd+V) se mueve a :afterup para que ocurra después del copy
+    [:grave_accent_and_tilde   "printf '<' | pbcopy" nil {:afterup [:!Cv]}]
+    [:!Sgrave_accent_and_tilde "printf '>' | pbcopy" nil {:afterup [:!Cv]}]
+    [:!Rgrave_accent_and_tilde "printf '>' | pbcopy" nil {:afterup [:!Cv]}]
    ]
+   :profiles [:Mac2026]
+  }
+
+  ;; === PERFIL MINECRAFT: MÍNIMO Y LIMPIO ===
+  {
+   :des "Minecraft: Regresar a Mac2026 (Hyper + 1)"
+   :rules [
+    [:1 "'/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'Mac2026'" :hyper_mode]
+   ]
+   :profiles [:Minecraft]
   }
  ]
 }
