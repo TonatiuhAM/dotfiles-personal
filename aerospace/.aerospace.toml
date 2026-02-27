@@ -95,11 +95,11 @@ run = 'layout floating'
 # Ghostty always opens in workspace 3
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ghostty'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 2'
 
 
 [[on-window-detected]]
@@ -108,7 +108,7 @@ run = 'exec-and-forget borders active_color=0xffe1e2e7 inactive_color=0xff494d64
 # ----------- aplicaciones en sus workspaces
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.vivaldi.Vivaldi'
@@ -116,7 +116,7 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 3"
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
