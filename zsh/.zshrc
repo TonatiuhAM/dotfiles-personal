@@ -14,9 +14,6 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Configuración de Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-
 # Configuración de PATH
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
@@ -250,3 +247,9 @@ touch ~/.hushlogin
 # =============================================================================
 # Mostrar información del sistema al iniciar (colocado al final para mejor performance)
 fastfetch
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+setxkbmap latam &
+
+# opencode
+export PATH=/home/tonatiuam/.opencode/bin:$PATH
