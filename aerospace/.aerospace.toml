@@ -235,6 +235,9 @@ run = "move-node-to-workspace 3"
     alt-t = 'exec-and-forget open -a "Helium"'
     # Window management
     alt-z = 'fullscreen'
+    
+    # Open Kitty with nvim
+    alt-shift-n = '''exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --single-instance=no nvim'''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
