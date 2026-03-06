@@ -206,12 +206,8 @@ zrename() {
 # 8. ALIASES - CONEXIONES SSH Y SERVIDORES
 # =============================================================================
 # Servidores principales
-alias elserver='ssh tona@100.111.204.26'
-alias pve='ssh root@100.92.189.110'
-
-# Servicios a través de jump host (conexiones en cascada)
-alias jellyfin='ssh -J root@100.92.189.110 root@192.168.100.82'
-alias immich='ssh -J root@100.92.189.110 root@192.168.100.83'
+alias elserver='ssh tona@100.81.159.65'
+alias pve='ssh root@100.69.42.67'
 
 kindle() {
   ssh root@192.168.100."$1" -p 2222

@@ -101,6 +101,15 @@ run = 'move-node-to-workspace 2'
 if.app-name-regex-substring = 'Ghostty'
 run = 'move-node-to-workspace 2'
 
+# Kitty always opens in workspace 2 (same as Ghostty)
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'kitty'
+run = 'move-node-to-workspace 2'
+
 
 [[on-window-detected]]
 run = 'exec-and-forget borders active_color=0xffe1e2e7 inactive_color=0xff494d64 width=5.0'
@@ -165,8 +174,8 @@ run = "move-node-to-workspace 3"
     # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-    # Ghostty terminal shortcut (like in i3)
-    alt-enter = '''exec-and-forget open -a "Ghostty"'''
+    # Kitty terminal shortcut (like in i3)
+    alt-enter = '''exec-and-forget open -a "kitty"'''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
